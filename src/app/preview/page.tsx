@@ -131,7 +131,7 @@ function PropertyPreviewContent() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent">
             Ihre Ergebnisse
           </h2>
           <div className="flex items-center justify-center gap-4 mb-4">
@@ -167,7 +167,7 @@ function PropertyPreviewContent() {
                         itemOne={<ReactCompareSliderImage src={pair.afterUrl} alt="Optimized" />}
                         itemTwo={<ReactCompareSliderImage src={pair.beforeUrl} alt="Original" />}
                         position={50}
-                        className="w-full h-auto aspect-[4/5] max-w-xs mx-auto"
+                        className="w-full h-auto aspect-[4/5] max-w-[280px] mx-auto"
                       />
                       <div className="absolute top-4 left-4 bg-blue-600/90 text-white px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-1 z-10">
                         <Sparkles className="w-4 h-4" />
