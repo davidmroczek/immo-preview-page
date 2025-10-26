@@ -1,7 +1,7 @@
 name = "immo-preview-page"
 compatibility_date = "2024-01-01"
 
-[env.production]
+# Pages configuration
 pages_build_output_dir = ".next"
 
 [[pages_build_config]]
@@ -10,6 +10,3 @@ build_command = "npm run build"
 destination_dir = ".next"
 # Root directory
 root_dir = "."
-
-# Pages configuration
-pages_build_output_dir = ".next"
