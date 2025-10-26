@@ -15,7 +15,7 @@ export default function Home() {
               <p className="text-sm text-gray-600">AI-powered property image optimization</p>
             </div>
             <Button asChild variant="outline">
-              <Link href="https://immobilt-ki.de" target="_blank" rel="noopener noreferrer">
+              <Link href="https://immobild-ki.de" target="_blank" rel="noopener noreferrer">
                 Visit Website <ExternalLink className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -65,7 +65,7 @@ export default function Home() {
 
           <div className="space-y-6">
             <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
-              <Link href="https://immobilt-ki.de" target="_blank" rel="noopener noreferrer">
+              <Link href="https://immobild-ki.de" target="_blank" rel="noopener noreferrer">
                 Start Optimizing Your Images <ExternalLink className="ml-2 h-5 w-5" />
               </Link>
             </Button>
