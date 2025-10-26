@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider";
-import { Download, ExternalLink, Sparkles, Shield, Lock } from "lucide-react";
+import { ExternalLink, Sparkles, Shield, Lock } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import Link from "next/link";
@@ -68,30 +68,13 @@ function PropertyPreviewContent() {
     fetchPropertyData();
   }, [propertyId]);
 
-  const handleDownload = async (url: string, filename: string) => {
-    try {
-      const response = await fetch(url);
-      const blob = await response.blob();
-      const downloadUrl = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = downloadUrl;
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(downloadUrl);
-      toast.success("Image downloaded successfully");
-    } catch (err) {
-      toast.error("Failed to download image");
-    }
-  };
 
   if (loading) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading property images...</p>
+          <p className="text-gray-600">Immobilienbilder werden geladen...</p>
         </div>
       </div>
     );
@@ -101,12 +84,12 @@ function PropertyPreviewContent() {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center max-w-md mx-auto px-4">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Property Not Found</h1>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Immobilie nicht gefunden</h1>
           <p className="text-gray-600 mb-6">
-            We couldn&apos;t find the property images you&apos;re looking for. Please check the link or contact support.
+            Wir konnten die gesuchten Immobilienbilder nicht finden. Bitte überprüfen Sie den Link oder kontaktieren Sie den Support.
           </p>
           <Button asChild className="bg-blue-600 hover:bg-blue-700">
-            <Link href="https://immobild-ki.de">Visit Immobilien KI</Link>
+            <Link href="https://immobild-ki.de">Immobilien KI besuchen</Link>
           </Button>
         </div>
       </div>
@@ -129,11 +112,11 @@ function PropertyPreviewContent() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Immobilien KI</h1>
-              <p className="text-sm text-gray-600">AI-powered property image optimization</p>
+              <p className="text-sm text-gray-600">KI-gestützte Immobilienbild-Optimierung</p>
             </div>
             <Button asChild variant="outline" className="hidden sm:flex">
               <Link href="https://immobild-ki.de" target="_blank" rel="noopener noreferrer">
-                Visit Website <ExternalLink className="ml-2 h-4 w-4" />
+                Website besuchen <ExternalLink className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </div>
@@ -150,11 +133,11 @@ function PropertyPreviewContent() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Property Image Optimization Results
+            Immobilienbild-Optimierung Ergebnisse
           </h2>
           <div className="flex items-center justify-center gap-4 mb-4">
             <Badge variant="secondary" className="px-3 py-1">
-              Property ID: {data.propertyId}
+              Immobilien-ID: {data.propertyId}
             </Badge>
             {data.companyName && (
               <Badge variant="outline" className="px-3 py-1">
@@ -163,8 +146,8 @@ function PropertyPreviewContent() {
             )}
           </div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            See the dramatic improvement our AI makes to your property listing photos.
-            Professional results in seconds, not hours.
+            Sehen Sie die dramatische Verbesserung, die unsere KI an Ihren Immobilien-Anzeigenfotos vornimmt.
+            Professionelle Ergebnisse in Sekunden, nicht Stunden.
           </p>
         </motion.div>
 
@@ -185,11 +168,11 @@ function PropertyPreviewContent() {
                         itemOne={<ReactCompareSliderImage src={pair.afterUrl} alt="Optimized" />}
                         itemTwo={<ReactCompareSliderImage src={pair.beforeUrl} alt="Original" />}
                         position={50}
-                        className="w-full h-auto aspect-[4/3]"
+                        className="w-full h-auto aspect-[5/4]"
                       />
                       <div className="absolute top-4 left-4 bg-blue-600/90 text-white px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-1 z-10">
                         <Sparkles className="w-4 h-4" />
-                        Optimized
+                        Optimiert
                       </div>
                       <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1.5 rounded-full text-sm font-medium z-10">
                         Original
@@ -198,24 +181,15 @@ function PropertyPreviewContent() {
                   </CardContent>
                 </Card>
 
-                {/* Download Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button
-                    onClick={() => handleDownload(pair.beforeUrl, `property-${propertyId}-before-${pair.pairIndex + 1}.jpg`)}
-                    variant="outline"
-                    className="flex items-center gap-2"
-                  >
-                    <Download className="h-4 w-4" />
-                    Download Original
-                  </Button>
-                  <Button
-                    onClick={() => handleDownload(pair.afterUrl, `property-${propertyId}-optimized-${pair.pairIndex + 1}.jpg`)}
-                    className="bg-blue-600 hover:bg-blue-700 flex items-center gap-2"
-                  >
-                    <Download className="h-4 w-4" />
-                    Download Optimized
+                {/* CTA Button */}
+                <div className="flex justify-center mt-6">
+                  <Button asChild className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive h-10 has-[>svg]:px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 w-full sm:w-auto">
+                    <Link href="https://immobild-ki.de" target="_blank" rel="noopener noreferrer">
+                      Jetzt kostenlos ausprobieren! <ExternalLink className="ml-2 h-5 w-5" />
+                    </Link>
                   </Button>
                 </div>
+
               </motion.div>
             ))}
           </div>
@@ -226,7 +200,7 @@ function PropertyPreviewContent() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-gray-600 text-lg">No before/after images available for this property yet.</p>
+            <p className="text-gray-600 text-lg">Für diese Immobilie sind noch keine Vorher/Nachher-Bilder verfügbar.</p>
           </motion.div>
         )}
 
@@ -240,22 +214,22 @@ function PropertyPreviewContent() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <h3 className="text-2xl font-bold text-gray-900">
-            Ready to optimize your property images?
+            Bereit, Ihre Immobilienbilder zu optimieren?
           </h3>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Join thousands of real estate professionals who trust Immobilien KI to make their listings stand out.
-            Get professional-quality images instantly with our AI-powered optimization.
+            Schließen Sie sich Tausenden von Immobilienprofis an, die Immobilien KI vertrauen, um ihre Inserate hervorzuheben.
+            Erhalten Sie professionelle Bilderqualität sofort mit unserer KI-gestützten Optimierung.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
+            <Button asChild className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive h-10 has-[>svg]:px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 w-full sm:w-auto">
               <Link href="https://immobild-ki.de" target="_blank" rel="noopener noreferrer">
-                Start Optimizing Now <ExternalLink className="ml-2 h-5 w-5" />
+                Jetzt kostenlos meine Exposés aufpolieren! <ExternalLink className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="px-8 py-6 rounded-xl">
               <Link href="https://immobild-ki.de/pricing" target="_blank" rel="noopener noreferrer">
-                View Pricing
+                Preise ansehen
               </Link>
             </Button>
           </div>
@@ -264,17 +238,17 @@ function PropertyPreviewContent() {
           <div className="flex items-center justify-center space-x-6 text-sm text-gray-500 pt-6">
             <div className="flex items-center">
               <Shield className="h-5 w-5 text-green-600 mr-2" />
-              <span>100% GDPR compliant</span>
+              <span>100% DSGVO konform</span>
             </div>
             <span className="text-gray-300">·</span>
             <div className="flex items-center">
               <span className="text-lg mr-2">🇩🇪</span>
-              <span>Made in Germany</span>
+              <span>Hergestellt in Deutschland</span>
             </div>
             <span className="text-gray-300">·</span>
             <div className="flex items-center">
               <Lock className="h-5 w-5 text-gray-500 mr-2" />
-              <span>Secure Cloud</span>
+              <span>Sichere Cloud</span>
             </div>
           </div>
         </motion.div>
@@ -285,7 +259,7 @@ function PropertyPreviewContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center">
             <p className="text-gray-600 text-sm">
-              © 2024 Immobilien KI. Transform your property images with AI.
+              © 2024 Immobilien KI. Transformieren Sie Ihre Immobilienbilder mit KI.
             </p>
           </div>
         </div>
@@ -300,7 +274,7 @@ export default function PropertyPreviewPage() {
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
+          <p className="text-gray-600">Laden...</p>
         </div>
       </div>
     }>
