@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider";
 import { ExternalLink, Sparkles, Shield, Lock } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
@@ -151,47 +150,93 @@ function PropertyPreviewContent() {
         </motion.div>
 
         {hasImages ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          <motion.div
+            className="space-y-8"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
             {data.beforeAfterImagePairs.map((pair, index) => (
-              <motion.div
-                key={pair.pairIndex}
-                className="space-y-6"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 * index }}
-              >
-                <Card className="overflow-hidden bg-white/60 backdrop-blur-sm border-white/20 w-full max-w-[420px] mx-auto">
-                  <CardContent className="p-0">
-                    <div className="relative">
-                      <ReactCompareSlider
-                        itemOne={<ReactCompareSliderImage src={pair.afterUrl} alt="Optimized" />}
-                        itemTwo={<ReactCompareSliderImage src={pair.beforeUrl} alt="Original" />}
-                        position={50}
-                        className="w-full h-auto aspect-[4/5]"
-                      />
-                      <div className="absolute top-4 left-4 bg-blue-600/90 text-white px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-1 z-10">
-                        <Sparkles className="w-4 h-4" />
-                        Optimiert
+              <Card key={pair.pairIndex} className="overflow-hidden bg-white/60 backdrop-blur-sm border-white/20">
+                <CardContent className="p-6">
+                  {/* Desktop: Side by side layout */}
+                  <div className="hidden md:block">
+                    <div className="grid grid-cols-2 gap-8">
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-2 justify-center">
+                          <div className="w-6 h-6 bg-black/70 text-white rounded-full flex items-center justify-center text-sm font-medium">O</div>
+                          <span className="text-lg font-semibold text-gray-900">Original</span>
+                        </div>
+                        <div className="relative">
+                          <img
+                            src={pair.beforeUrl}
+                            alt={`Original image ${pair.pairIndex}`}
+                            className="w-full h-auto rounded-lg shadow-lg"
+                          />
+                        </div>
                       </div>
-                      <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1.5 rounded-full text-sm font-medium z-10">
-                        Original
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-2 justify-center">
+                          <div className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-medium">
+                            <Sparkles className="w-4 h-4" />
+                          </div>
+                          <span className="text-lg font-semibold text-gray-900">Optimiert</span>
+                        </div>
+                        <div className="relative">
+                          <img
+                            src={pair.afterUrl}
+                            alt={`Optimized image ${pair.pairIndex}`}
+                            className="w-full h-auto rounded-lg shadow-lg"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
 
-                {/* CTA Button */}
-                <div className="flex justify-center mt-6">
-                  <Button asChild className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive h-10 has-[>svg]:px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 w-full sm:w-auto">
-                    <Link href="https://immobild-ki.de" target="_blank" rel="noopener noreferrer">
-                      Jetzt kostenlos ausprobieren! <ExternalLink className="ml-2 h-5 w-5" />
-                    </Link>
-                  </Button>
-                </div>
+                  {/* Mobile: Stacked layout */}
+                  <div className="block md:hidden space-y-6">
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2 justify-center">
+                        <div className="w-6 h-6 bg-black/70 text-white rounded-full flex items-center justify-center text-sm font-medium">O</div>
+                        <span className="text-lg font-semibold text-gray-900">Original</span>
+                      </div>
+                      <div className="relative">
+                        <img
+                          src={pair.beforeUrl}
+                          alt={`Original image ${pair.pairIndex}`}
+                          className="w-full h-auto rounded-lg shadow-lg"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2 justify-center">
+                        <div className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-medium">
+                          <Sparkles className="w-4 h-4" />
+                        </div>
+                        <span className="text-lg font-semibold text-gray-900">Optimiert</span>
+                      </div>
+                      <div className="relative">
+                        <img
+                          src={pair.afterUrl}
+                          alt={`Optimized image ${pair.pairIndex}`}
+                          className="w-full h-auto rounded-lg shadow-lg"
+                        />
+                      </div>
+                    </div>
+                  </div>
 
-              </motion.div>
+                  {/* CTA Button */}
+                  <div className="flex justify-center mt-6">
+                    <Button asChild className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive h-10 has-[>svg]:px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 w-full sm:w-auto">
+                      <Link href="https://immobild-ki.de" target="_blank" rel="noopener noreferrer">
+                        Jetzt kostenlos ausprobieren! <ExternalLink className="ml-2 h-5 w-5" />
+                      </Link>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
-          </div>
+          </motion.div>
         ) : (
           <motion.div
             className="text-center py-12"
