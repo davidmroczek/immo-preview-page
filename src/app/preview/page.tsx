@@ -167,7 +167,7 @@ function PropertyPreviewContent() {
                         itemOne={<ReactCompareSliderImage src={pair.afterUrl} alt="Optimized" />}
                         itemTwo={<ReactCompareSliderImage src={pair.beforeUrl} alt="Original" />}
                         position={50}
-                        className="w-full h-auto aspect-[1/1]"
+                        className="w-full h-auto aspect-[3/4] max-w-sm mx-auto"
                       />
                       <div className="absolute top-4 left-4 bg-blue-600/90 text-white px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-1 z-10">
                         <Sparkles className="w-4 h-4" />
