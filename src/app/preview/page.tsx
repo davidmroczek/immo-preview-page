@@ -151,7 +151,7 @@ function PropertyPreviewContent() {
         </motion.div>
 
         {hasImages ? (
-          <div className="space-y-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             {data.beforeAfterImagePairs.map((pair, index) => (
               <motion.div
                 key={pair.pairIndex}
@@ -160,7 +160,7 @@ function PropertyPreviewContent() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 * index }}
               >
-                <Card className="overflow-hidden bg-white/60 backdrop-blur-sm border-white/20 max-w-[420px] mx-auto">
+                <Card className="overflow-hidden bg-white/60 backdrop-blur-sm border-white/20 w-full max-w-[420px] mx-auto">
                   <CardContent className="p-0">
                     <div className="relative">
                       <ReactCompareSlider
