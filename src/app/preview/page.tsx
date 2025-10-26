@@ -100,10 +100,10 @@ function PropertyPreviewContent() {
   const hasImages = data.beforeAfterImagePairs.length > 0;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       {/* Header */}
       <motion.header
-        className="bg-white"
+        className="bg-white/80 backdrop-blur-sm"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -131,7 +131,7 @@ function PropertyPreviewContent() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
             Ihre Ergebnisse
           </h2>
           <div className="flex items-center justify-center gap-4 mb-4">
@@ -160,7 +160,7 @@ function PropertyPreviewContent() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 * index }}
               >
-                <Card className="overflow-hidden">
+                <Card className="overflow-hidden bg-white/60 backdrop-blur-sm border-white/20">
                   <CardContent className="p-0">
                     <div className="relative">
                       <ReactCompareSlider
