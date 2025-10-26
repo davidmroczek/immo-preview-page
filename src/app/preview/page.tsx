@@ -47,7 +47,7 @@ function PropertyPreviewContent() {
       try {
         setLoading(true);
         const response = await fetch(
-          `https://immo-scraper.davmro90.workers.dev/properties/${propertyId}/images`
+          `https://immo-scraper.davmro90.workers.dev/api/external/properties/${propertyId}/images`
         );
 
         if (!response.ok) {
