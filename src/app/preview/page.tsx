@@ -103,7 +103,7 @@ function PropertyPreviewContent() {
     <div className="min-h-screen bg-white">
       {/* Header */}
       <motion.header
-        className="bg-white border-b border-gray-200"
+        className="bg-white"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -111,8 +111,7 @@ function PropertyPreviewContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <img src="/logo-wide.webp" alt="Immobilien KI" className="h-8 w-auto" />
-              <p className="text-sm text-gray-600">KI-gestützte Immobilienbild-Optimierung</p>
+              <img src="/logo-wide.webp" alt="Immobilien KI" className="h-12 w-auto" />
             </div>
             <Button asChild variant="outline" className="hidden sm:flex">
               <Link href="https://immobild-ki.de" target="_blank" rel="noopener noreferrer">
@@ -168,7 +167,7 @@ function PropertyPreviewContent() {
                         itemOne={<ReactCompareSliderImage src={pair.afterUrl} alt="Optimized" />}
                         itemTwo={<ReactCompareSliderImage src={pair.beforeUrl} alt="Original" />}
                         position={50}
-                        className="w-full h-auto aspect-[6/5]"
+                        className="w-full h-auto aspect-[1/1]"
                       />
                       <div className="absolute top-4 left-4 bg-blue-600/90 text-white px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-1 z-10">
                         <Sparkles className="w-4 h-4" />

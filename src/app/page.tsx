@@ -7,16 +7,15 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200">
+      <header className="bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <img src="/logo-wide.webp" alt="Immobilien KI" className="h-8 w-auto" />
-              <p className="text-sm text-gray-600">KI-gestützte Immobilienbild-Optimierung</p>
+              <img src="/logo-wide.webp" alt="Immobilien KI" className="h-12 w-auto" />
             </div>
-            <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Button asChild className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive h-10 has-[>svg]:px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 w-full sm:w-auto">
               <Link href="https://immobild-ki.de" target="_blank" rel="noopener noreferrer">
-                Website besuchen <ExternalLink className="ml-2 h-4 w-4" />
+                Website besuchen <ExternalLink className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           </div>
