@@ -133,7 +133,7 @@ function PropertyPreviewContent() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Immobilienbild-Optimierung Ergebnisse
+            Ihre Ergebnisse
           </h2>
           <div className="flex items-center justify-center gap-4 mb-4">
             <Badge variant="secondary" className="px-3 py-1">
