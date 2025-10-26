@@ -11,7 +11,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Immobilien KI</h1>
+              <img src="/logo-wide.webp" alt="Immobilien KI" className="h-8 w-auto" />
               <p className="text-sm text-gray-600">KI-gestützte Immobilienbild-Optimierung</p>
             </div>
             <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
