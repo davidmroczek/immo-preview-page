@@ -227,11 +227,6 @@ function PropertyPreviewContent() {
                 Jetzt kostenlos meine Exposés aufpolieren! <ExternalLink className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="px-8 py-6 rounded-xl">
-              <Link href="https://immobild-ki.de/pricing" target="_blank" rel="noopener noreferrer">
-                Preise ansehen
-              </Link>
-            </Button>
           </div>
 
           {/* Trust badges */}
@@ -259,7 +254,7 @@ function PropertyPreviewContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center">
             <p className="text-gray-600 text-sm">
-              © 2024 Immobilien KI. Transformieren Sie Ihre Immobilienbilder mit KI.
+              © 2025 Immobilien KI. Transformieren Sie Ihre Immobilienbilder mit KI.
             </p>
           </div>
         </div>

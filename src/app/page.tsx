@@ -14,7 +14,7 @@ export default function Home() {
               <h1 className="text-2xl font-bold text-gray-900">Immobilien KI</h1>
               <p className="text-sm text-gray-600">KI-gestützte Immobilienbild-Optimierung</p>
             </div>
-            <Button asChild variant="outline">
+            <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
               <Link href="https://immobild-ki.de" target="_blank" rel="noopener noreferrer">
                 Website besuchen <ExternalLink className="ml-2 h-4 w-4" />
               </Link>
@@ -96,7 +96,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center">
             <p className="text-gray-600 text-sm">
-              © 2024 Immobilien KI. Transformieren Sie Ihre Immobilienbilder mit KI.
+              © 2025 Immobilien KI. Transformieren Sie Ihre Immobilienbilder mit KI.
             </p>
           </div>
         </div>
