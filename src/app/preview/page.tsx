@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useEffect, useState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -28,15 +28,21 @@ interface PropertyData {
   };
 }
 
-export default function PropertyPreviewPage() {
-  const params = useParams();
-  const propertyId = params.propertyId as string;
+function PropertyPreviewContent() {
+  const searchParams = useSearchParams();
+  const propertyId = searchParams.get('id');
 
   const [propertyData, setPropertyData] = useState<PropertyData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!propertyId) {
+      setError("No property ID provided");
+      setLoading(false);
+      return;
+    }
+
     const fetchPropertyData = async () => {
       try {
         setLoading(true);
@@ -52,15 +58,14 @@ export default function PropertyPreviewPage() {
         setPropertyData(data);
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred");
+        console.error(err);
         toast.error("Failed to load property images");
       } finally {
         setLoading(false);
       }
     };
 
-    if (propertyId) {
-      fetchPropertyData();
-    }
+    fetchPropertyData();
   }, [propertyId]);
 
   const handleDownload = async (url: string, filename: string) => {
@@ -98,7 +103,7 @@ export default function PropertyPreviewPage() {
         <div className="text-center max-w-md mx-auto px-4">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Property Not Found</h1>
           <p className="text-gray-600 mb-6">
-            We couldn't find the property images you're looking for. Please check the link or contact support.
+            We couldn&apos;t find the property images you&apos;re looking for. Please check the link or contact support.
           </p>
           <Button asChild className="bg-blue-600 hover:bg-blue-700">
             <Link href="https://immobilt-ki.de">Visit Immobilien KI</Link>
@@ -286,5 +291,20 @@ export default function PropertyPreviewPage() {
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function PropertyPreviewPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    }>
+      <PropertyPreviewContent />
+    </Suspense>
   );
 }
